@@ -77,6 +77,15 @@ export default function BillGenerator() {
     const printWindow = window.open("", "_blank")
     if (!printWindow) return
 
+    // Format the date for the filename (removing slashes)
+    const filenameDateFormat = formattedDate.replace(/\//g, '')
+
+    // Create the custom filename
+    const customFilename = `${restaurantName}-${filenameDateFormat}${billNumber}-${total.toFixed(2)}-food-bill`
+
+    // Set the document title to the custom filename
+    printWindow.document.title = customFilename
+
     // Create a complete standalone HTML document for printing
     printWindow.document.write(`
     <!DOCTYPE html>
